@@ -1,7 +1,7 @@
 # Stardist-Cell-Segmentation-Pipeline
 ## Environment set up
 Python version == 3.9.x  
-The commands in this section must be executed on the command line (‘Anaconda Prompt’ on Windows, ‘Terminal’ on Linux/Mac OS).  
+The commands in this section must be executed on the command line (‘Anaconda Prompt’ on Windows).  
 1. Create a new conda environment with Python 3.9:  
 `conda create -n imgpre -y python=3.9`  
 2. Activate the conda environment:  
@@ -25,9 +25,9 @@ For [mode] part, there are 2 modes. 'f' for preprocessing a single image, and 'd
 For example, if you want to preprocess `C:\data\img\img1.tiff`, and save as `C:\data\img\img1_processed.tiff`then use:  
 `python imgpre.py -m f C:\data\img\img1.tiff C:\data\img\img1_processed.tiff`
 If you want to preprocess all images under `C:\data\img\imc`, and save them under `C:\data\img\imc_processed`, then use:  
-`python imgpre.py -m d C:\data\img\imc C:\data\img\imc_processed`
+`python imgpre.py -m d C:\data\img\imc C:\data\img\imc_processed`  
 What's more, if you put `imgpre.py` in the same directory with images to be processed, then you can just use:  
-`python imgpre.py -m f img1.tiff img1_processed.tiff`
+`python imgpre.py -m f img1.tiff img1_processed.tiff`  
 Use command `python imgpre.py --help` for more help
 ### Cell segmentation
 1. Open QuPath, open a project
