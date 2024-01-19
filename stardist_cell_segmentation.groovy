@@ -9,8 +9,8 @@ def stardist = StarDist2D.builder(pathModel)
         .channels(0)                        // Select detection channel
         .normalizePercentiles(0.01, 99.99)  // Percentile normalization
         .pixelSize(0.5)                     // Resolution for detection
-        .cellExpansion(5.0)                 // Approximate cells based upon nucleus expansion
-        .cellConstrainScale(1.5)            // Constrain cell expansion using nucleus size
+        .cellExpansion(1.0)                 // Approximate cells based upon nucleus expansion
+        .cellConstrainScale(0.5)            // Constrain cell expansion using nucleus size
         .measureShape()                     // Add shape measurements
         .measureIntensity()                 // Add cell measurements (in all compartments)
         .includeProbability(true)           // Add probability as a measurement (enables later filtering)
