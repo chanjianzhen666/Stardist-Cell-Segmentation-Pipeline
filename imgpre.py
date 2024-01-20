@@ -40,24 +40,33 @@ def main(mode, inputpath, outputpath):
     if mode == 'f':
         store = imread(inputpath, aszarr=True)
         z = zarr.open(store, mode='r')
-        z = z[0]
+        if z.name == None:
+            img = z
+            img_processed = img_preprocess(img)
+            imwrite(outputpath, img_processed)
+            click.echo('Done!')
+        
+        elif z.name == '/':
+            z = z[0]
+            height = z.shape[0]
+            width = z.shape[1]
+            img_final = zarr.zeros((height, width), dtype='uint8')
+            height_per_tile = height // 2
+            
+            for i in range(2):
+                img = z[i*height_per_tile:(i+1)*height_per_tile, :, 0]
+                img = (((img - img.min()) / (img.max() - img.min())) * 255).astype('uint8')
+                img_preprocessed = img_preprocess(img)
+                img_final[i*height_per_tile:(i+1)*height_per_tile, :] = img_preprocessed
 
-        height = z.shape[0]
-        width = z.shape[1]
-        img_final = zarr.zeros((height, width), dtype='uint8')
-        height_per_tile = height // 2
-        for i in range(2):
-            img = z[i*height_per_tile:(i+1)*height_per_tile, :, 0]
-            img = (((img - img.min()) / (img.max() - img.min())) * 255).astype('uint8')
-            img_preprocessed = img_preprocess(img)
-            img_final[i*height_per_tile:(i+1)*height_per_tile, :] = img_preprocessed
-
-        imwrite(outputpath, img_final)
-        click.echo('Done!')
-        store.close()
+            imwrite(outputpath, img_final)
+            click.echo('Done!')
+            store.close()
     
     if mode == 'd':
         files = os.listdir(inputpath)
+        if not os.path.exists(outputpath):
+            os.makedirs(outputpath)
         for file in files:
             if str(file).endswith('.tif') or str(file).endswith('.tiff'):
                 img = imread(inputpath + '\\' + file)
