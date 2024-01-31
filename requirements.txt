@@ -1,6 +1,6 @@
 click
 numpy
-skimage
+scikit-image
 scipy
 tifffile
 zarr
