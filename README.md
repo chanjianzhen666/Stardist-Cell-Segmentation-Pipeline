@@ -6,8 +6,8 @@ The commands in this section must be executed on the command line (‘Anaconda P
 `conda create -n imgpre -y python=3.9`  
 2. Activate the conda environment:  
 `conda activate imgpre`  
-3. Install the required packages. For example:  
-`pip install click`  
+3. Install the required packages:  
+`pip install -r requirements.txt`  
 Required packages are: **click**, **numpy**, **skimage**, **scipy**, **tifffile**, **zarr**  
 You can use `conda list` to check weather these packages are installed
 ## Usage
