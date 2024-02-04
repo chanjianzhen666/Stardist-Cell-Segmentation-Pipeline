@@ -1,4 +1,5 @@
 # Stardist-Cell-Segmentation-Pipeline
+
 ## Environment set up
 Python version == 3.9.x  
 The commands in this section must be executed on the command line (‘Anaconda Prompt’ on Windows).  
@@ -10,8 +11,10 @@ The commands in this section must be executed on the command line (‘Anaconda P
 `pip install -r requirements.txt`  
 Required packages are: **click**, **numpy**, **skimage**, **scipy**, **tifffile**, **zarr**  
 You can use `conda list` to check weather these packages are installed
+
 ## Usage
 There are 2 files. `imgpre.py` for image preprocessing and `stardist_cell_segmentation.groovy` for cell segmentation in QuPath
+
 ### Image preprocessing
 1. Activate the conda environment:  
 `conda activate imgpre`  
@@ -35,7 +38,12 @@ options are:
     - -o: the argument for open operation. Default is 5.
 
     Use command `python imgpre.py --help` for more help.
+
 ### Cell segmentation
-1. Open QuPath, open a project
-2. Drag `stardist_cell_segmentation.groovy` into the QuPath window
-3. Run the scrip by *Run -> Run for project*
+1. Open QuPath, open a project.
+2. Drag `stardist_cell_segmentation.groovy` into the QuPath window.
+3. Run the scrip by *Run -> Run for project*.
+4. The result is saved as a .geojson file under `[project directory]\json`.
+5. If a segmentation mask image is needed, place `json_to_tiff.py` under the project directory and run it, the mask image will be generated under `[project directory]\masks`.
+
+## Downstream process
