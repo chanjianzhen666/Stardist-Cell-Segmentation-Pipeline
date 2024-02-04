@@ -31,7 +31,7 @@ stardist.detectObjects(imageData, pathObjects)
 println 'Detection done!'
 
 def fileName = server.getMetadata().getName()
-def pathOutput = buildFilePath(QPEx.PROJECT_BASE_DIR, 'json')
-mkdirs(pathOutput)
-exportAllObjectsToGeoJson(pathOutput + "\\" + fileName[0..-5] + ".geojson", "EXCLUDE_MEASUREMENTS", "PRETTY_JSON", "FEATURE_COLLECTION")
+def jsonOutput = buildFilePath(QPEx.PROJECT_BASE_DIR, 'json')
+mkdirs(jsonOutput)
+exportAllObjectsToGeoJson(jsonOutput + "\\" + fileName[0..-6] + ".geojson", "EXCLUDE_MEASUREMENTS", "PRETTY_JSON", "FEATURE_COLLECTION")
 println 'json saved!'
