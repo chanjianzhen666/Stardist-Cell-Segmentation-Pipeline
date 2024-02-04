@@ -1,6 +1,8 @@
 click
 numpy
+opencv-python
 scikit-image
 scipy
 tifffile
+tqdm
 zarr
