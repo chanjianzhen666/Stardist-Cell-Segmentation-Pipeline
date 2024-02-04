@@ -9,7 +9,6 @@ The commands in this section must be executed on the command line (‘Anaconda P
 `conda activate imgpre`  
 3. Install the required packages:  
 `pip install -r requirements.txt`  
-Required packages are: **click**, **numpy**, **skimage**, **scipy**, **tifffile**, **zarr**  
 You can use `conda list` to check weather these packages are installed
 
 ## Usage
@@ -40,10 +39,12 @@ options are:
     Use command `python imgpre.py --help` for more help.
 
 ### Cell segmentation
-1. Open QuPath, open a project.
-2. Drag `stardist_cell_segmentation.groovy` into the QuPath window.
-3. Run the scrip by *Run -> Run for project*.
-4. The result is saved as a .geojson file under `[project directory]\json`.
-5. If a segmentation mask image is needed, place `json_to_tiff.py` under the project directory and run it, the mask image will be generated under `[project directory]\masks`.
+1. Open QuPath, install StarDist extension following [this](https://github.com/qupath/qupath-extension-stardist).
+2. Open a project.
+3. Drag `stardist_cell_segmentation.groovy` into the QuPath window.
+4. Run the scrip by *Run -> Run for project*.
+5. Select images to be processed.
+6. The result is saved as a .geojson file under `[project directory]\json`.
+7. If a segmentation mask image is needed, place `json_to_tiff.py` under the project directory and run it under the environment mentioned before, the mask image will be generated under `[project directory]\masks`.
 
 ## Downstream process
