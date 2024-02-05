@@ -14,7 +14,7 @@ You can use `conda list` to check weather these packages are installed
 ## Usage
 There are 2 files. `imgpre.py` for image preprocessing and `stardist_cell_segmentation.groovy` for cell segmentation in QuPath
 
-### Image preprocessing
+### A. Image preprocessing
 1. Activate the conda environment:  
 `conda activate imgpre`  
 2. Change directory to where `imgpre.py` is located:  
@@ -38,7 +38,7 @@ options are:
 
     Use command `python imgpre.py --help` for more help.
 
-### Cell segmentation
+### B. Cell segmentation
 1. Open QuPath, install StarDist extension following [this](https://github.com/qupath/qupath-extension-stardist).
 2. Open a project.
 3. Drag `stardist_cell_segmentation.groovy` into the QuPath window.
@@ -47,4 +47,16 @@ options are:
 6. The result is saved as a .geojson file under `[project directory]\json`.
 7. If a segmentation mask image is needed, place `json_to_tiff.py` under the project directory and run it under the environment mentioned before, the mask image will be generated under `[project directory]\masks`.
 
-## Downstream process
+## Downstream processing
+Downstream processing is based on [this article](https://www.nature.com/articles/s41596-023-00881-0). Based on the results obtained from the above steps, the next processing starts from the eighth step in the article, i.e. "Single-cell data extraction". 
+1. Set up equipment by following "Equipment setup". Refer to [this document](https://bodenmillergroup.github.io/steinbock/latest/install-docker/) to set up the *steinbock* Docker container.
+2. Construct the following data/working directory structure:  
+
+steinbock data/working directory  
+├── raw(user-provided, when starting from raw data)  
+├── panel.csv(user-provided or generated from raw data, step 6(A))  
+├── img (user-provided, when starting from TIFF files, or extracted from raw data, step 6(A))  
+├── masks (generated in step 7(A), cell segmentation masks)  
+├── intensities (generated in step 8(A), averaged cell pixel intensities)  
+├── regionprops (generated in step 8(A), morphological cell features)  
+├── neighbors (generated in step 8(A), spatial cell neighbors list)
