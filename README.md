@@ -14,7 +14,7 @@ You can use `conda list` to check weather these packages are installed
 ## Usage
 There are 2 files. `imgpre.py` for image preprocessing and `stardist_cell_segmentation.groovy` for cell segmentation in QuPath
 
-### A. Image preprocessing
+### Image preprocessing
 1. Activate the conda environment:  
 `conda activate imgpre`  
 2. Change directory to where `imgpre.py` is located:  
@@ -38,7 +38,7 @@ options are:
 
     Use command `python imgpre.py --help` for more help.
 
-### B. Cell segmentation
+### Cell segmentation
 1. Open QuPath, install StarDist extension following [this](https://github.com/qupath/qupath-extension-stardist).
 2. Open a project.
 3. Drag `stardist_cell_segmentation.groovy` into the QuPath window.
@@ -50,13 +50,23 @@ options are:
 ## Downstream processing
 Downstream processing is based on [this article](https://www.nature.com/articles/s41596-023-00881-0). Based on the results obtained from the above steps, the next processing starts from the eighth step in the article, i.e. "Single-cell data extraction". 
 1. Set up equipment by following "Equipment setup". Refer to [this document](https://bodenmillergroup.github.io/steinbock/latest/install-docker/) to set up the *steinbock* Docker container.
-2. Construct the following data/working directory structure:  
+2. Construct the following data/working directory structure. If there are any missing files, please generate them according to the guidelines in the article:  
 
-steinbock data/working directory  
-├── raw(user-provided, when starting from raw data)  
-├── panel.csv(user-provided or generated from raw data, step 6(A))  
-├── img (user-provided, when starting from TIFF files, or extracted from raw data, step 6(A))  
-├── masks (generated in step 7(A), cell segmentation masks)  
-├── intensities (generated in step 8(A), averaged cell pixel intensities)  
-├── regionprops (generated in step 8(A), morphological cell features)  
-├── neighbors (generated in step 8(A), spatial cell neighbors list)
+    steinbock data/working directory  
+    ├── raw (.mcd and .txt ROI)  
+    ├── panel.csv (user-provided or generated from raw data, step 6(A) in the article)  
+    ├── img (user-provided, when starting from TIFF files, or extracted from raw data, step 6(A) in the article)  
+    ├── masks (generated in "Cell segmentation", cell segmentation masks)  
+    
+3. Start from 8(A) in the article, the data/working directory should be like:
+
+    steinbock data/working directory
+    ├── raw (.mcd and .txt ROI)  
+    ├── panel.csv (user-provided or generated from raw data, step 6(A) in the article)  
+    ├── img (user-provided, when starting from TIFF files, or extracted from raw data, step 6(A) in the article)  
+    ├── masks (generated in "Cell segmentation", cell segmentation masks)  
+    ├── intensities (generated in step 8(A), averaged cell pixel intensities)  
+    ├── regionprops (generated in step 8(A), morphological cell features)  
+    ├── neighbors (generated in step 8(A), spatial cell neighbors list)
+
+4. Step 9(A) in the article, read in data into R, and continue to complete the next series of processes
