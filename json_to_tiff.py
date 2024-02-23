@@ -45,4 +45,4 @@ for c, i in tqdm(enumerate(label_path), total=len(label_path)):
         metadata={
             'Labels': image_labels,
         }
-)
+    )
